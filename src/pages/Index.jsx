@@ -2,11 +2,9 @@ import React from 'react'
 
 const Index = () => {
 
-  console.log(process.env)
-
   return (
     <div>
-      Index JSX {process.env.TEST}
+      Index JSX {process.env.REACT_APP_MY_EN}
     </div>
   )
 }

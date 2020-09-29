@@ -47,7 +47,7 @@ task('clean', () => src('dist').clean('dist').exec())
 
 task('default', ['clean'], async (context) => {
   const fuse = context.setConfig()
-  fuse.dev({})
+  fuse.dev({ port: PORT})
   context.createBundle(fuse).hmr().watch()
   await fuse.run()
 })
