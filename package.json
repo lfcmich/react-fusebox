@@ -1,10 +1,10 @@
 {
-  "name": "hkcard-backend-v8.0",
+  "name": "react-fusebox",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "node -r dotenv/config fuse",
+    "dev": "node fuse",
     "clean": "node fuse clean",
     "build": "node fuse build"
   },
