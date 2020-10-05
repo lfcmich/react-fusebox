@@ -43,6 +43,7 @@ context({
               path.resolve(__dirname, 'node_modules'),
             ],
           }),
+          CSSResourcePlugin(),
           CSSPlugin(),
         ],
         [
@@ -52,7 +53,7 @@ context({
         ],
         CSSPlugin(),
         SVGPlugin(),
-        env !== 'development' && QuantumPlugin(),
+        env !== 'development' && QuantumPlugin({ css: true }),
         EnvPlugin(require('dotenv').config({ path: configFile[env] }).parsed),
         BabelPlugin({
           config: {
