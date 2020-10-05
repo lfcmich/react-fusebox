@@ -5,13 +5,19 @@ const {
   CSSPlugin,
   BabelPlugin,
   UglifyJSPlugin,
+  LESSPlugin,
+  CSSResourcePlugin,
   QuantumPlugin,
   EnvPlugin,
 } = require('fuse-box')
 
 const PORT = 8080
 
+const path = require('path')
+
 const { src, task, context } = require('fuse-box/sparky')
+
+const lessRegex = /\.less$/
 
 context({
   setConfig({ env = 'production' }) {
@@ -28,13 +34,29 @@ context({
       useTypescriptCompiler: true,
       allowSyntheticDefaultImports: true,
       plugins: [
+        [
+          /(node_modules|less).*\.less$/,
+          LESSPlugin({
+            javascriptEnabled: true,
+            paths: [
+              path.join(__dirname, 'src/less'),
+              path.resolve(__dirname, 'node_modules'),
+            ],
+          }),
+          CSSPlugin(),
+        ],
+        [
+          /node_modules.*\.css$/,
+          CSSResourcePlugin({ inline: true }),
+          CSSPlugin(),
+        ],
         CSSPlugin(),
         SVGPlugin(),
         env !== 'development' && QuantumPlugin(),
         EnvPlugin(require('dotenv').config({ path: configFile[env] }).parsed),
         BabelPlugin({
           config: {
-            sourceMaps: env === "development",
+            sourceMaps: env === 'development',
             presets: ['es2015'],
             plugins: ['transform-react-jsx'],
           },
