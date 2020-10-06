@@ -9,7 +9,7 @@ const {
   CSSResourcePlugin,
   QuantumPlugin,
   EnvPlugin,
-} = require('fuse-box')
+} = require('fuse-box/es6')
 
 const PORT = 8080
 
@@ -44,6 +44,11 @@ context({
             ],
           }),
           CSSResourcePlugin(),
+          CSSPlugin(),
+        ],
+        [
+          /node_modules.*\.css$/,
+          CSSResourcePlugin({ inline: true }),
           CSSPlugin(),
         ],
         CSSPlugin(),

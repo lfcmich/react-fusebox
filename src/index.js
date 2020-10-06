@@ -4,9 +4,4 @@ import ReactDOM from 'react-dom'
 import Index from './pages/Index'
 import Router from './routes'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router/>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+ReactDOM.render(<Router />, document.getElementById('root'))
