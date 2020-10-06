@@ -6,4 +6,4 @@ Use Fusebox to build react app with configuration
 
 TODO:
 
-- Add SASS support
+- Add React Router support

@@ -46,20 +46,15 @@ context({
           CSSResourcePlugin(),
           CSSPlugin(),
         ],
-        [
-          /node_modules.*\.css$/,
-          CSSResourcePlugin({ inline: true }),
-          CSSPlugin(),
-        ],
         CSSPlugin(),
         SVGPlugin(),
         env !== 'development' && QuantumPlugin({ css: true }),
         EnvPlugin(require('dotenv').config({ path: configFile[env] }).parsed),
         BabelPlugin({
           config: {
-            sourceMaps: env === 'development',
+            sourceMaps: process.env.NODE_ENV === 'development',
             presets: ['es2015'],
-            plugins: ['transform-react-jsx'],
+            plugins: [['transform-react-jsx']],
           },
         }),
         WebIndexPlugin({
@@ -77,7 +72,7 @@ task('clean', () => src('dist').clean('dist').exec())
 
 task('default', ['clean'], async (context) => {
   const fuse = context.setConfig({ env: 'development' })
-  fuse.dev({ port: PORT })
+  fuse.dev({ port: PORT,fallback: "index.html" })
   context.createBundle(fuse).hmr().watch()
   await fuse.run()
 })

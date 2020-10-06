@@ -1,0 +1,30 @@
+{
+  "title": "Toogle language using F2",
+  "rules": [
+    {
+      "description": "Changing language using F2",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f2",
+            "modifiers": {
+              "optional": ["left_control"]
+            }
+          },
+          "to_if_alone": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "f2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

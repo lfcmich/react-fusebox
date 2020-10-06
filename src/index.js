@@ -1,11 +1,12 @@
-import "@babel/polyfill";
-import * as React from "react";
-import ReactDOM from "react-dom";
-import Index from "./pages/Index";
+import '@babel/polyfill'
+import * as React from 'react'
+import ReactDOM from 'react-dom'
+import Index from './pages/Index'
+import Router from './routes'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Index />
+    <Router/>
   </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)
